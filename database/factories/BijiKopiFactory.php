@@ -29,7 +29,7 @@ class BijiKopiFactory extends Factory
             'aroma_id' => fake()->numberBetween(1, 5),
             'warna_id' => fake()->numberBetween(1, 5),
             'fisik_id' => fake()->numberBetween(1, 5),
-            'kardar_air_id' => fake()->numberBetween(1, 5)
+            'kadar_air_id' => fake()->numberBetween(1, 5)
 
         ];
     }

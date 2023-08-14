@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="{{ asset('admin_lte') }}/plugins/pace-progress/themes/black/pace-theme-flat-top.css">
     <!-- adminlte-->
     <link rel="stylesheet" href="{{ asset('admin_lte') }}/dist/css/adminlte.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('admin_lte') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('admin_lte') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('admin_lte') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini pace-primary">
@@ -30,11 +35,11 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="{{ route('home') }}" role="button"><i
+                    <a class="nav-link" data-widget="pushmenu" href="{{ route('dashboard') }}" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                    <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="https://www.linkedin.com/in/fpurnahar/" target="_blank" class="nav-link">Contact</a>
@@ -123,7 +128,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -164,6 +169,25 @@
                                     </a>
                                 </li>
                             </ul>
+                        <li class="nav-item">
+                            <a href="{{ route('kmean') }}" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    K-Means
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="nav-icon fas fa-power-off"></i>
+                                <p>{{ __('Logout') }}</p>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
                         </li>
                     </ul>
                 </nav>
@@ -221,6 +245,42 @@
     <script src="{{ asset('admin_lte') }}/plugins/pace-progress/pace.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin_lte') }}/dist/js/adminlte.min.js"></script>
+
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('admin_lte') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('admin_lte') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).q().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": false,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "responsive": false,
+            });
+        });
+    </script>
+
+    @yield('script')
 </body>
 
 </html>
