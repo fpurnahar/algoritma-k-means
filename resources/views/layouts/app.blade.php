@@ -131,7 +131,7 @@
                             <a href="{{ route('dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    Data Biji Kopi
                                 </p>
                             </a>
                         </li>
@@ -169,14 +169,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        <li class="nav-item">
-                            <a href="{{ route('kmean') }}" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    K-Means
-                                </p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -260,26 +252,6 @@
     <script src="{{ asset('admin_lte') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('admin_lte') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- Page specific script -->
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).q().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": false,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": false,
-                "info": false,
-                "autoWidth": false,
-                "responsive": false,
-            });
-        });
-    </script>
-
     @yield('script')
 </body>
 
