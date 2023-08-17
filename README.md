@@ -30,14 +30,19 @@ You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
 ## Laravel Running
+- PHP 8.0
+- MySql 5.7.33
 ### Instalation
-
 - **[git clone this repository](https://github.com/fpurnahar/algoritma-k-means.git)**
 - $ cd algoritma-k-means (your_patch_folder) 
 - $ cp .env.example .env
 - $ set config sesuai user password mysql
 - $ composer install
 - $ php artisan migrate --seed
+
+### Using Login
+- User = admin@example.com
+- Password = P@ssw0rd
 
 ## License
 
