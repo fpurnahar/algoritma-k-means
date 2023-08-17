@@ -33,11 +33,11 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 ### Instalation
 
 - **[git clone this repository](https://github.com/fpurnahar/algoritma-k-means.git)**
-- ** $ cd algoritma-k-means (your_patch_folder) 
-- ** $ cp .env.example .env
-- ** $ set config sesuai user password mysql
-- ** $ composer install
-- ** $ php artisan migrate --seed
+- $ cd algoritma-k-means (your_patch_folder) 
+- $ cp .env.example .env
+- $ set config sesuai user password mysql
+- $ composer install
+- $ php artisan migrate --seed
 
 ## License
 
