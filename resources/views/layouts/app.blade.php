@@ -145,25 +145,25 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../forms/general.html" class="nav-link">
+                                    <a href="{{ route('list.aroma') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Aroma</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/advanced.html" class="nav-link">
+                                    <a href="{{ route('list.warna') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Warna</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/editors.html" class="nav-link">
+                                    <a href="{{ route('list.fisik') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Fisik</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../forms/validation.html" class="nav-link">
+                                    <a href="{{ route('list.kadar.air') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kadar Air</p>
                                     </a>

@@ -81,7 +81,7 @@ class DashboardController extends Controller
         $get_warna_biji_kopi = WarnaBijiKopi::get();
         $get_fisik_biji_kopi = FisikBijiKopi::get();
         $get_kadar_air_biji_kopi = KadarAirBijiKopi::get();
-        return view('pages.create-biji-kopi', compact('get_aroma_biji_kopi', 'get_warna_biji_kopi', 'get_fisik_biji_kopi', 'get_kadar_air_biji_kopi'));
+        return view('pages.biji-kopi.create-biji-kopi', compact('get_aroma_biji_kopi', 'get_warna_biji_kopi', 'get_fisik_biji_kopi', 'get_kadar_air_biji_kopi'));
     }
 
     public function storeBijiKopi(Request $request)
@@ -127,7 +127,7 @@ class DashboardController extends Controller
         $get_warna_biji_kopi = WarnaBijiKopi::get();
         $get_fisik_biji_kopi = FisikBijiKopi::get();
         $get_kadar_air_biji_kopi = KadarAirBijiKopi::get();
-        return view('pages.edit-biji-kopi', compact('edit_biji_kopi', 'get_aroma_biji_kopi', 'get_warna_biji_kopi', 'get_fisik_biji_kopi', 'get_kadar_air_biji_kopi'));
+        return view('pages.biji-kopi.edit-biji-kopi', compact('edit_biji_kopi', 'get_aroma_biji_kopi', 'get_warna_biji_kopi', 'get_fisik_biji_kopi', 'get_kadar_air_biji_kopi'));
     }
 
     public function updateBijiKopi(Request $request, $id)
