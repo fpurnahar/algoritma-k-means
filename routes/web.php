@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-Route::get('/search', [App\Http\Controllers\DashboardController::class, 'search'])->name('search');
+Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::prefix('coffee-beans')->group(
+    function () {
+        Route::get('/search', [DashboardController::class, 'search'])->name('search');
+        Route::get('/create-biji-kopi', [DashboardController::class, 'createBijiKopi'])->name('create.biji.kopi');
+        Route::post('/store-biji-kopi', [DashboardController::class, 'storeBijiKopi'])->name('store.biji.kopi');
+        Route::get('/edit-biji-kopi/{id}', [DashboardController::class, 'editBijiKopi'])->name('edit.biji.kopi');
+        Route::post('/update-biji-kopi/{id}', [DashboardController::class, 'updateBijiKopi'])->name('update.biji.kopi');
+        Route::delete('/delete-biji-kopi/{id}', [DashboardController::class, 'destroyBijiKopi'])->name('delete.biji.kopi');
+    }
+);
 
-Route::get('/k-mean', [App\Http\Controllers\KMeansController::class, 'index'])->name('kmean');
-Route::post('/cluster', [App\Http\Controllers\KMeansController::class, 'cluster'])->name('cluster');
+Route::prefix('k-measn')->group(
+    function () {
+        Route::post('/cluster', [App\Http\Controllers\KMeansController::class, 'cluster'])->name('cluster');
+    }
+);

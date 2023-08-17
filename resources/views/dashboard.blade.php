@@ -9,20 +9,49 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">DataTable @yield('name')</h3>
+                <div class="row">
+                    <div class="col">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <ul>
+                                        {{ $error }}
+                                    </ul>
+                                @endforeach
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <h3 class="card-title">DataTable @yield('name')</h3>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('create.biji.kopi') }}" class="btn btn-block btn-sm btn-primary float-right">
+                            Tambah Data Biji Kopi
+                            <i class="nav-icon fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 mb-2">
-                        <div class="float-left mb-12">
+                        <div class="float-left">
                             <form action="{{ route('cluster') }}" method="POST">
                                 @csrf
                                 <button class="btn btn-block btn-sm btn-success" type="submit"> Generate
                                     Cluster</button>
                             </form>
                         </div>
-                        <div class="float-right mb-12">
+                        <div class="float-right">
                             <form>
                                 <div class="input-group input-group-sm">
                                     <input type="text" class="form-control" id="search" name="search">
@@ -36,13 +65,14 @@
                 </div>
                 <table id="example2" class="table table-bordered table-striped">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>No.</th>
                             <th>Nama</th>
                             <th>Aroma</th>
                             <th>Warna</th>
                             <th>Fisik</th>
                             <th>Kadar Air</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +84,29 @@
                                 <td>{{ $item->deskripsi_warna }}</td>
                                 <td>{{ $item->deskripsi_fisik }}</td>
                                 <td>{{ $item->deskripsi_kadar_air }}</td>
+                                <td class="project-actions text-center">
+                                    <form action="{{ route('delete.biji.kopi', $item) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{ route('edit.biji.kopi', $item) }}" class="btn btn-warning btn-sm"><i
+                                                class="fas fa-pencil-alt"> Edit</i></a>
+                                        <div class="btn-group btn-group-sm">
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
+                                                Delete</button>
+                                        </div>
+                                    </form>
+
+                                    {{-- <a class="btn btn-warning btn-sm" href="#">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="#">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Delete
+                                    </a> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
