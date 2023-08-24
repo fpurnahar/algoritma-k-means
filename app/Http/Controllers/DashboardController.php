@@ -124,7 +124,7 @@ class DashboardController extends Controller
     public function storeBijiKopi(Request $request)
     {
         $request->validate([
-            'nama_biji_kopi' => 'required|min:10|max:50',
+            'nama_biji_kopi' => 'required|min:3|max:15',
             'aroma_id' => 'required|numeric|max:5',
             'warna_id' => 'required|numeric|max:5',
             'fisik_id' => 'required|numeric|max:5',
@@ -171,7 +171,7 @@ class DashboardController extends Controller
     {
 
         $request->validate([
-            'nama_biji_kopi' => 'required|min:10|max:50',
+            'nama_biji_kopi' => 'required|min:3|max:15',
             'aroma_id' => 'required|numeric|max:5',
             'warna_id' => 'required|numeric|max:5',
             'fisik_id' => 'required|numeric|max:5',

@@ -37,7 +37,7 @@ class KadarAirBijiKopiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'deskripsi_kadar_air' => 'required|min:5|max:50',
+            'deskripsi_kadar_air' => 'required|min:3|max:50',
         ]);
 
         $newDataBijiKopi = new KadarAirBijiKopi();
@@ -80,7 +80,7 @@ class KadarAirBijiKopiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'deskripsi_kadar_air' => 'required|min:5|max:50',
+            'deskripsi_kadar_air' => 'required|min:3|max:50',
         ]);
 
         $newDataBijiKopi = KadarAirBijiKopi::findOrfail($id);

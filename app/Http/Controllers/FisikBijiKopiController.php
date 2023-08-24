@@ -37,7 +37,7 @@ class FisikBijiKopiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'deskripsi_fisik' => 'required|min:5|max:50',
+            'deskripsi_fisik' => 'required|min:3|max:50',
         ]);
 
         $newDataBijiKopi = new FisikBijiKopi();
@@ -80,7 +80,7 @@ class FisikBijiKopiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'deskripsi_fisik' => 'required|min:5|max:50',
+            'deskripsi_fisik' => 'required|min3|max:50',
         ]);
 
         $newDataBijiKopi = FisikBijiKopi::findOrfail($id);

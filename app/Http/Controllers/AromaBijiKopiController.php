@@ -37,7 +37,7 @@ class AromaBijiKopiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'deskripsi_aroma' => 'required|min:5|max:50',
+            'deskripsi_aroma' => 'required|min:3|max:50',
         ]);
 
         $newDataBijiKopi = new AromaBijiKopi();

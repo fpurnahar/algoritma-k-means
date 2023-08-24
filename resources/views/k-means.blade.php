@@ -158,15 +158,6 @@
             </div>
         </div>
 
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Grafik Chart Clustering Biji Kopi</h3>
-            </div>
-            <!-- /.card-header -->
-            <<canvas id="attributeChart" width="400" height="200"></canvas>
-
-        </div>
     </section>
 @endsection
 
@@ -262,33 +253,4 @@
         });
     </script>
 
-
-    {{-- <script src="{{ asset('admin_lte/plugins/chart.js/Chart.min.js') }}"></script> --}} --}}
-    <script>
-        var attributeNames = @json($attributeNames);
-        var attributeValues = @json($attributeValues);
-
-        var ctx = document.getElementById('attributeChart').getContext('2d');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: attributeNames,
-                datasets: [{
-                    label: 'Attribute Values',
-                    data: attributeValues,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Set your desired color
-                    borderColor: 'rgba(75, 192, 192, 1)', // Set your desired color
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
 @endsection

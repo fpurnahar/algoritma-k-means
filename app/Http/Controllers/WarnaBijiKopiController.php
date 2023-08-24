@@ -37,7 +37,7 @@ class WarnaBijiKopiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'deskripsi_warna' => 'required|min:5|max:50',
+            'deskripsi_warna' => 'required|min:3|max:50',
         ]);
 
         $newDataBijiKopi = new WarnaBijiKopi();
@@ -80,7 +80,7 @@ class WarnaBijiKopiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'deskripsi_warna' => 'required|min:5|max:50',
+            'deskripsi_warna' => 'required|min:3|max:50',
         ]);
 
         $newDataBijiKopi = WarnaBijiKopi::findOrfail($id);

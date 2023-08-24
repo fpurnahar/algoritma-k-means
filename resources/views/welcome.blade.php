@@ -69,8 +69,8 @@
         </main>
 
         <footer class="mt-auto text-white-50">
-            {{-- <p>Created By <a href="https://www.linkedin.com/in/fpurnahar/" class="text-white">Fadhil Purnahar</a>.
-            </p> --}}
+            <p class="text-white">Created By Febri Lukmanulhakim</p>
+            </p>
         </footer>
     </div>
 </body>
