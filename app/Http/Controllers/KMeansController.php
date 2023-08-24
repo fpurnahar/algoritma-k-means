@@ -53,14 +53,6 @@ class KMeansController extends Controller
             $fourthAttribute[] = $clusterCounts[$clusterName];
         }
 
-        $attributeNames = [];
-        $attributeValues = [];
-
-        foreach ($result_data as $data) {
-            $attributeNames[] = $data->nama_biji_kopi;
-            $attributeValues[] = $data->warna_id;
-        }
-
-        return view('k-means', compact('result_cluster', 'fourthAttribute', 'clusterCounts', 'attributeNames', 'attributeValues'));
+        return view('k-means', compact('result_cluster', 'fourthAttribute', 'clusterCounts'));
     }
 }
