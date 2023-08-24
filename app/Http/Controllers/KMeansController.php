@@ -11,7 +11,6 @@ use stdClass;
 class KMeansController extends Controller
 {
     private $kmeans_repository;
-    private $coffeeBeans;
 
     public function __construct(KMeansRepository $kmeans_repository)
     {
@@ -46,6 +45,22 @@ class KMeansController extends Controller
             }
             $result_cluster["cluster_" . $index_1 + 1] = array_unique(array_merge(...$result_point), SORT_REGULAR);
         }
-        return view('k-means', compact('result_cluster'));
+
+        $clusterCounts = [];
+        $fourthAttribute = [];
+        foreach ($result_cluster as $clusterName => $clusterData) {
+            $clusterCounts[$clusterName] = count($clusterData);
+            $fourthAttribute[] = $clusterCounts[$clusterName];
+        }
+
+        $attributeNames = [];
+        $attributeValues = [];
+
+        foreach ($result_data as $data) {
+            $attributeNames[] = $data->nama_biji_kopi;
+            $attributeValues[] = $data->warna_id;
+        }
+
+        return view('k-means', compact('result_cluster', 'fourthAttribute', 'clusterCounts', 'attributeNames', 'attributeValues'));
     }
 }

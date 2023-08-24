@@ -30,7 +30,7 @@
                             <th>No.</th>
                             <th>Nama Biji Kopi</th>
                             <th>Aroma Biji Kopi</th>
-                            <th>Warja Biji Kopi</th>
+                            <th>Warna Biji Kopi</th>
                             <th>Fisik Biji Kopi</th>
                             <th>Kadar Air Biji Kopi</th>
                         </tr>
@@ -77,7 +77,7 @@
                             <th>No.</th>
                             <th>Nama Biji Kopi</th>
                             <th>Aroma Biji Kopi</th>
-                            <th>Warja Biji Kopi</th>
+                            <th>Warna Biji Kopi</th>
                             <th>Fisik Biji Kopi</th>
                             <th>Kadar Air Biji Kopi</th>
                         </tr>
@@ -124,7 +124,7 @@
                             <th>No.</th>
                             <th>Nama Biji Kopi</th>
                             <th>Aroma Biji Kopi</th>
-                            <th>Warja Biji Kopi</th>
+                            <th>Warna Biji Kopi</th>
                             <th>Fisik Biji Kopi</th>
                             <th>Kadar Air Biji Kopi</th>
                         </tr>
@@ -147,6 +147,26 @@
         </div>
         <!-- /.card -->
 
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Grafik Chart Clustering Biji Kopi</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <canvas id="clusteringChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Grafik Chart Clustering Biji Kopi</h3>
+            </div>
+            <!-- /.card-header -->
+            <<canvas id="attributeChart" width="400" height="200"></canvas>
+
+        </div>
     </section>
 @endsection
 
@@ -202,4 +222,73 @@
         });
     </script>
 
+    {{-- Grafik Data Cluster --}}
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script>
+        var clusterNames = @json(array_keys($clusterCounts));
+        var clusterCounts = @json(array_values($clusterCounts));
+        var fourthAttribute = @json($fourthAttribute);
+
+        var ctx = document.getElementById('clusteringChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: clusterNames,
+                datasets: [{
+                    label: 'Jumlah Elemen dalam Setiap Cluster',
+                    data: clusterCounts,
+                    backgroundColor: fourthAttribute.map((value, index) => {
+                        if (index % 3 === 0) {
+                            return 'rgba(0, 0, 255, 0.6)'; // Blue
+                        } else if (index % 3 === 1) {
+                            return 'rgba(0, 128, 0, 0.6)'; // Green
+                        } else {
+                            return 'rgba(255, 0, 0, 0.6)'; // Red
+                        }
+                    }), // Customize color encoding
+                    borderColor: 'rgba(75, 192, 192, 1)', // Sesuaikan dengan warna yang Anda inginkan
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+    {{-- <script src="{{ asset('admin_lte/plugins/chart.js/Chart.min.js') }}"></script> --}} --}}
+    <script>
+        var attributeNames = @json($attributeNames);
+        var attributeValues = @json($attributeValues);
+
+        var ctx = document.getElementById('attributeChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: attributeNames,
+                datasets: [{
+                    label: 'Attribute Values',
+                    data: attributeValues,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Set your desired color
+                    borderColor: 'rgba(75, 192, 192, 1)', // Set your desired color
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 @endsection

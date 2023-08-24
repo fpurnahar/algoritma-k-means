@@ -32,12 +32,14 @@
                     <div class="col-9">
                         <h3 class="card-title">DataTable @yield('title') @yield('name')</h3>
                     </div>
-                    <div class="col-3">
-                        <a href="{{ route('create.warna') }}" class="btn btn-block btn-sm btn-primary float-right">
-                            Tambah @yield('title') @yield('name')
-                            <i class="nav-icon fas fa-plus"></i>
-                        </a>
-                    </div>
+                    @if (Auth::user()->role_id != 2)
+                        <div class="col-3">
+                            <a href="{{ route('create.warna') }}" class="btn btn-block btn-sm btn-primary float-right">
+                                Tambah @yield('title') @yield('name')
+                                <i class="nav-icon fas fa-plus"></i>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
             <!-- /.card-header -->
@@ -47,7 +49,9 @@
                         <tr class="text-center">
                             <th>No.</th>
                             <th>Deskripsi Warna</th>
-                            <th>Action</th>
+                            @if (Auth::user()->role_id != 2)
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -55,18 +59,20 @@
                             <tr class="text-center">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->deskripsi_warna }}</td>
-                                <td class="project-actions text-center">
-                                    <form action="{{ route('delete.warna', $item) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="{{ route('edit.warna', $item) }}" class="btn btn-warning btn-sm"><i
-                                                class="fas fa-pencil-alt"> Edit</i></a>
-                                        <div class="btn-group btn-group-sm">
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
-                                                Delete</button>
-                                        </div>
-                                    </form>
-                                </td>
+                                @if (Auth::user()->role_id != 2)
+                                    <td class="project-actions text-center">
+                                        <form action="{{ route('delete.warna', $item) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{ route('edit.warna', $item) }}" class="btn btn-warning btn-sm"><i
+                                                    class="fas fa-pencil-alt"> Edit</i></a>
+                                            <div class="btn-group btn-group-sm">
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
+                                                    Delete</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

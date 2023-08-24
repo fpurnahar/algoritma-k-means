@@ -25,7 +25,8 @@ class BijiKopiFactory extends Factory
     public function definition()
     {
         return [
-            'nama_biji_kopi' => fake()->name(),
+            'user_id' => fake()->numberBetween(1, 1000),
+            'nama_biji_kopi' => fake()->city(),
             'aroma_id' => fake()->numberBetween(1, 5),
             'warna_id' => fake()->numberBetween(1, 5),
             'fisik_id' => fake()->numberBetween(1, 5),

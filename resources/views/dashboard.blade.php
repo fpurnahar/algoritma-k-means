@@ -48,7 +48,9 @@
                             <form action="{{ route('cluster') }}" method="POST">
                                 @csrf
                                 <button class="btn btn-block btn-sm btn-success" type="submit"> Generate
-                                    Cluster</button>
+                                    Cluster
+                                    <i class="nav-icon fas fa-network-wired"></i>
+                                </button>
                             </form>
                         </div>
                         <div class="float-right">
@@ -67,46 +69,54 @@
                     <thead>
                         <tr class="text-center">
                             <th>No.</th>
-                            <th>Nama</th>
+                            <th>Nama User</th>
+                            <th>Role</th>
+                            <th>Biji Kopi</th>
                             <th>Aroma</th>
                             <th>Warna</th>
                             <th>Fisik</th>
                             <th>Kadar Air</th>
-                            <th>Action</th>
+                            @if (Auth::user()->role_id != 2)
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($get_data_biji_kopi as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->user_name }}</td>
+                                <td>{{ $item->role_name }}</td>
                                 <td>{{ $item->nama_biji_kopi }}</td>
                                 <td>{{ $item->deskripsi_aroma }}</td>
                                 <td>{{ $item->deskripsi_warna }}</td>
                                 <td>{{ $item->deskripsi_fisik }}</td>
                                 <td>{{ $item->deskripsi_kadar_air }}</td>
-                                <td class="project-actions text-center">
-                                    <form action="{{ route('delete.biji.kopi', $item) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="{{ route('edit.biji.kopi', $item) }}" class="btn btn-warning btn-sm"><i
-                                                class="fas fa-pencil-alt"> Edit</i></a>
-                                        <div class="btn-group btn-group-sm">
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
-                                                Delete</button>
-                                        </div>
-                                    </form>
+                                @if (Auth::user()->role_id != 2)
+                                    <td class="project-actions text-center">
+                                        <form action="{{ route('delete.biji.kopi', $item) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{ route('edit.biji.kopi', $item) }}"
+                                                class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                            <div class="btn-group btn-group-sm">
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fas fa-trash"></i></button>
+                                            </div>
+                                        </form>
 
-                                    {{-- <a class="btn btn-warning btn-sm" href="#">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a> --}}
-                                </td>
+                                        {{-- <a class="btn btn-warning btn-sm" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </a> --}}
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
@@ -141,6 +151,8 @@
                         trHTML +=
                             `<tr>
                                 <td>` + index + `</td>
+                                <td>` + item.user_name + `</td>
+                                <td>` + item.role_name + `</td>
                                 <td>` + item.nama_biji_kopi + `</td>
                                 <td>` + item.deskripsi_aroma + `</td>
                                 <td>` + item.deskripsi_warna + `</td>

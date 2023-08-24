@@ -127,6 +127,16 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+                        @if (Auth::user()->role_id !== 2)
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Users Management
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>

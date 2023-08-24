@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\AromaBijiKopi;
 use App\Models\BijiKopi;
+use App\Models\Role;
 use App\Models\FisikBijiKopi;
 use App\Models\KadarAirBijiKopi;
 use App\Models\KategoriBijiKopi;
@@ -24,15 +25,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(10)->create();
+        
+
+        // role
+        Role::create([
+            'name' => 'admin'
+        ]);
+        
+        Role::create([
+            'name' => 'member'
+        ]);
+        
+        // role
 
         User::factory()->create([
+            'role_id' => '1',
             'name' => 'admin',
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('P@ssw0rd'), // P@ssw0rd
             'remember_token' => Str::random(10),
         ]);
+
+        User::factory(1000)->create();
 
         // Aroma Kopi
         AromaBijiKopi::create([

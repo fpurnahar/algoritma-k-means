@@ -85,5 +85,6 @@ Route::prefix('coffee-beans/atribut/kadar-air')->group(
 Route::prefix('k-measn')->group(
     function () {
         Route::post('/cluster', [App\Http\Controllers\KMeansController::class, 'cluster'])->name('cluster');
+        Route::post('/display-cluster', [App\Http\Controllers\KMeansController::class, 'displayClusteringResults'])->name('display.cluster');
     }
 );

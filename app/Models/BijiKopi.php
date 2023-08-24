@@ -19,5 +19,5 @@ class BijiKopi extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['nama_biji_kopi', 'aroma_id', 'warna_id', 'fisik_id', 'kardar_air_id'];
+    protected $fillable = ['role_id','nama_biji_kopi', 'aroma_id', 'warna_id', 'fisik_id', 'kardar_air_id'];
 }

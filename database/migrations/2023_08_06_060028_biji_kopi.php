@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('biji_kopi', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->unsigned();
             $table->string('nama_biji_kopi');
             $table->integer('aroma_id')->unsigned();
             $table->integer('warna_id')->unsigned();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->foreign('aroma_id')->references('id')->on('aroma_biji_kopi');
             $table->foreign('warna_id')->references('id')->on('warna_biji_kopi');
             $table->foreign('fisik_id')->references('id')->on('fisik_biji_kopi');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('kadar_air_id')->references('id')->on('kadar_air_biji_kopi');
         });
     }

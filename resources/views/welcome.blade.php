@@ -41,8 +41,8 @@
                 <h3 class="float-md-start mb-0"> Clustering BIJI KOPI</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
                     <a class="nav-link active" aria-current="page" href="{{ route('welcome') }}">Home</a>
-                    <a class="nav-link" href="#">Features</a>
-                    <a class="nav-link" href="#">Contact</a>
+                    {{-- <a class="nav-link" href="{{ route('login') }}">{{ __('Login ') }}</a>
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register ') }}</a> --}}
                 </nav>
             </div>
         </header>
@@ -69,8 +69,8 @@
         </main>
 
         <footer class="mt-auto text-white-50">
-            <p>Created By <a href="https://www.linkedin.com/in/fpurnahar/" class="text-white">Fadhil Purnahar</a>.
-            </p>
+            {{-- <p>Created By <a href="https://www.linkedin.com/in/fpurnahar/" class="text-white">Fadhil Purnahar</a>.
+            </p> --}}
         </footer>
     </div>
 </body>

@@ -32,6 +32,8 @@ class DashboardController extends Controller
             ->join('warna_biji_kopi', 'warna_biji_kopi.id', '=', 'biji_kopi.warna_id')
             ->join('fisik_biji_kopi', 'fisik_biji_kopi.id', '=', 'biji_kopi.fisik_id')
             ->join('kadar_air_biji_kopi', 'kadar_air_biji_kopi.id', '=', 'biji_kopi.kadar_air_id')
+            ->join('users', 'users.id', '=', 'biji_kopi.user_id')
+            ->join('role', 'role.id', '=', 'users.role_id')
             ->select(
                 'biji_kopi.id as id',
                 'biji_kopi.nama_biji_kopi as nama_biji_kopi',
@@ -42,7 +44,9 @@ class DashboardController extends Controller
                 // 'biji_kopi.fisik_id as fisik_id',
                 'fisik_biji_kopi.deskripsi_fisik as deskripsi_fisik',
                 // 'biji_kopi.kadar_air_id as kadar_air_id',
-                'kadar_air_biji_kopi.deskripsi_kadar_air as deskripsi_kadar_air'
+                'kadar_air_biji_kopi.deskripsi_kadar_air as deskripsi_kadar_air',
+                'users.name as user_name',
+                'role.name as role_name'
             )
             ->orderBy('biji_kopi.id', 'DESC')
             ->paginate(10);
@@ -57,13 +61,46 @@ class DashboardController extends Controller
                     ->join('warna_biji_kopi', 'warna_biji_kopi.id', '=', 'biji_kopi.warna_id')
                     ->join('fisik_biji_kopi', 'fisik_biji_kopi.id', '=', 'biji_kopi.fisik_id')
                     ->join('kadar_air_biji_kopi', 'kadar_air_biji_kopi.id', '=', 'biji_kopi.kadar_air_id')
+                    ->join('users', 'users.id', '=', 'biji_kopi.user_id')
+                    ->join('role', 'role.id', '=', 'users.role_id')
+                    ->select(
+                        'biji_kopi.id as id',
+                        'biji_kopi.nama_biji_kopi as nama_biji_kopi',
+                        // 'biji_kopi.aroma_id as aroma_id',
+                        'aroma_biji_kopi.deskripsi_aroma as deskripsi_aroma',
+                        // 'biji_kopi.warna_id as warna_id',
+                        'warna_biji_kopi.deskripsi_warna as deskripsi_warna',
+                        // 'biji_kopi.fisik_id as fisik_id',
+                        'fisik_biji_kopi.deskripsi_fisik as deskripsi_fisik',
+                        // 'biji_kopi.kadar_air_id as kadar_air_id',
+                        'kadar_air_biji_kopi.deskripsi_kadar_air as deskripsi_kadar_air',
+                        'users.name as user_name',
+                        'role.name as role_name'
+                    )
                     ->orderBy('biji_kopi.id', 'DESC')
                     ->paginate(10);
             } else {
-                $filter = BijiKopi::join('aroma_biji_kopi', 'aroma_biji_kopi.id', '=', 'biji_kopi.aroma_id')
+                $filter =
+                    BijiKopi::join('aroma_biji_kopi', 'aroma_biji_kopi.id', '=', 'biji_kopi.aroma_id')
                     ->join('warna_biji_kopi', 'warna_biji_kopi.id', '=', 'biji_kopi.warna_id')
                     ->join('fisik_biji_kopi', 'fisik_biji_kopi.id', '=', 'biji_kopi.fisik_id')
                     ->join('kadar_air_biji_kopi', 'kadar_air_biji_kopi.id', '=', 'biji_kopi.kadar_air_id')
+                    ->join('users', 'users.id', '=', 'biji_kopi.user_id')
+                    ->join('role', 'role.id', '=', 'users.role_id')
+                    ->select(
+                        'biji_kopi.id as id',
+                        'biji_kopi.nama_biji_kopi as nama_biji_kopi',
+                        // 'biji_kopi.aroma_id as aroma_id',
+                        'aroma_biji_kopi.deskripsi_aroma as deskripsi_aroma',
+                        // 'biji_kopi.warna_id as warna_id',
+                        'warna_biji_kopi.deskripsi_warna as deskripsi_warna',
+                        // 'biji_kopi.fisik_id as fisik_id',
+                        'fisik_biji_kopi.deskripsi_fisik as deskripsi_fisik',
+                        // 'biji_kopi.kadar_air_id as kadar_air_id',
+                        'kadar_air_biji_kopi.deskripsi_kadar_air as deskripsi_kadar_air',
+                        'users.name as user_name',
+                        'role.name as role_name'
+                    )
                     ->where('nama_biji_kopi', 'LIKE', '%' . $request->search . "%")
                     ->orderBy('biji_kopi.id', 'DESC')
                     ->paginate(10);

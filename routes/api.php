@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 // Route::post('/cluster', [App\Http\Controllers\KMeansController::class, 'cluster'])->name('cluster');
+Route::post('/display-cluster', [App\Http\Controllers\KMeansController::class, 'display4DClusteringResults'])->name('display.cluster');
