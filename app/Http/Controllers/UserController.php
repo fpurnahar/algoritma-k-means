@@ -108,13 +108,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'require|min5|max:50',
-            'role_id' => 'require|int|max:3',
-            'email' => 'require|email|max:50',
-            'email_verified_at' => 'require|date',
-            'password' => 'require',
-            'image_path' => 'require|mimes:jpg,jpeg,png,svg',
+            'user_name' => 'required|min:3|max:50',
+            'role_id' => 'required|int|max:3',
+            'user_email' => 'required|email',
+            'user_verified' => 'required|date',
+            'password' => 'required',
+            'user_image_path' => 'required',
         ]);
+
         $edit_user = User::findOrfail($id);
         $edit_user->name = $request->user_name;
         $edit_user->role_id = $request->role_id;
@@ -129,21 +130,24 @@ class UserController extends Controller
                 return back()->with('info', 'The password confirmation does not match !');
             }
         }
-        if ($request->hasFile('user_image_path')) {
-            $oldImage = public_path() . $edit_user->image_path;
-            if (file_exists($oldImage)) {
-                unlink($oldImage);
+        if ($request->image_path == $edit_user->image_path) {
+            $edit_user->image_path = $request->user_image_path;
+        } else {
+            if ($request->hasFile('user_image_path')) {
+                $oldImage = public_path() . $edit_user->image_path;
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
+                $words = preg_split('/(?=[A-Z])/', $request->user_name);
+                $words =  strtolower(implode('_', $words));
+                $update_profile = $request->user_image_path;
+                $filename = $words . '.' . $update_profile->getClientOriginalExtension();
+                $destinationPath = public_path() . '/admin_lte/dist/img/profile/' . $words;
+                $update_profile->move($destinationPath, $filename);
+                $edit_user->image_path = '/admin_lte/dist/img/profile/' . $words . '/' . $filename;
             }
-            $words = preg_split('/(?=[A-Z])/', $request->user_name);
-            $words =  strtolower(implode('_', $words));
-            $update_profile = $request->user_image_path;
-            $filename = $words . '.' . $update_profile->getClientOriginalExtension();
-            $destinationPath = public_path() . '/admin_lte/dist/img/profile/' . $words;
-            $update_profile->move($destinationPath, $filename);
-            $edit_user->image_path = '/admin_lte/dist/img/profile/' . $words . '/' . $filename;
         }
 
-        // $edit_user->image_path = $request->user_image_path;
         $edit_user->save();
         return back()->with('success', 'Berhasil Update Profile !');
     }
