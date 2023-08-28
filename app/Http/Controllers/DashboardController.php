@@ -133,6 +133,7 @@ class DashboardController extends Controller
 
         $newDataBijiKopi = new BijiKopi();
         $newDataBijiKopi->nama_biji_kopi = $request->nama_biji_kopi;
+        $newDataBijiKopi->user_id = $request->user_id;
         $newDataBijiKopi->aroma_id = $request->aroma_id;
         $newDataBijiKopi->warna_id = $request->warna_id;
         $newDataBijiKopi->fisik_id = $request->fisik_id;
@@ -180,6 +181,7 @@ class DashboardController extends Controller
 
         $editDataBijiKopi = BijiKopi::findOrfail($id);
         $editDataBijiKopi->nama_biji_kopi = $request->nama_biji_kopi;
+        $editDataBijiKopi->user_id = $request->user_id;
         $editDataBijiKopi->aroma_id = $request->aroma_id;
         $editDataBijiKopi->warna_id = $request->warna_id;
         $editDataBijiKopi->fisik_id = $request->fisik_id;

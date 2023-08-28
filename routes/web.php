@@ -7,6 +7,7 @@ use App\Http\Controllers\AromaBijiKopiController;
 use App\Http\Controllers\WarnaBijiKopiController;
 use App\Http\Controllers\FisikBijiKopiController;
 use App\Http\Controllers\KadarAirBijiKopiController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,17 @@ Route::get('/', function () {
 })->name('welcome');
 
 Auth::routes();
-
 Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::prefix('users')->group(
+    function () {
+        Route::get('/list', [UserController::class, 'index'])->name('list.user');
+        Route::get('/search', [UserController::class, 'search'])->name('search.user');
+        Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
+        Route::post('/update/{id}', [UserController::class, 'update'])->name('update.user');
+        Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('delete.user');
+    }
+);
 
 Route::prefix('coffee-beans')->group(
     function () {

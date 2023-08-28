@@ -25,17 +25,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         // role
         Role::create([
             'name' => 'admin'
         ]);
-        
+
         Role::create([
             'name' => 'member'
         ]);
-        
+
         // role
 
         User::factory()->create([
@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('P@ssw0rd'), // P@ssw0rd
+            'image_path' => 'admin_lte/dist/img/avatar.png',
             'remember_token' => Str::random(10),
         ]);
 

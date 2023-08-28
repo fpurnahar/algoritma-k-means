@@ -46,6 +46,10 @@
                                                 name="nama_biji_kopi" value="{{ $edit_biji_kopi->nama_biji_kopi }}"
                                                 placeholder="Enter nama biji kopi ..." required>
                                         </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="user_id" name="user_id"
+                                                value="{{ Auth::user()->role_id }}" hidden>
+                                        </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
